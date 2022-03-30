@@ -20,6 +20,7 @@ state("ski32-rebuild-vs6", "v1.4 VS6 Rebuild")
 startup
 {
 	settings.Add("resetOnFail", false, "Reset on missed flag");
+	settings.Add("splitMissed", false, "Split on missed flags");
 }
 
 start
@@ -34,7 +35,7 @@ reset
 
 split
 {
-	if(settings["resetOnFail"])
+	if(settings["resetOnFail"] || settings["splitMissed"])
 		return ((current.flags != old.flags) && (current.failFlag == old.failFlag)) || (old.focused == 1 && current.focused == 0);
 	else
 		return (current.flags != old.flags) || (old.focused == 1 && current.focused == 0);
