@@ -35,7 +35,7 @@ reset
 
 split
 {
-	if(settings["resetOnFail"] || settings["splitMissed"])
+	if(settings["resetOnFail"] || !settings["splitMissed"])
 		return ((current.flags != old.flags) && (current.failFlag == old.failFlag)) || (old.focused == 1 && current.focused == 0);
 	else
 		return (current.flags != old.flags) || (old.focused == 1 && current.focused == 0);
